@@ -1,0 +1,99 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/search/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            SEARCH
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycart/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY CART
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/borrowedbooks/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY BOOKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY
+                            CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY EXCHANGE OFFERS
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');
+
+    body {
+        background-color: #F3F2EC;
+        font-family: "Prata";
+        font-size: 20px;
+    }
+</style>
+
+
+
+<body>
+    <div class="container " style="transform: translateY(200px);">
+
+        <h1>Search Bookshop</h1>
+
+        <form action="/searchBookshop" , method="POST">
+            <div class="form_design">
+                <div class="col-auto">
+                    <input type="text" id="searchShop" name="searchShop">
+                </div>
+                <div class="col-auto">
+                    <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                    <button type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+        <form action="/searchBooks" method="POST" >
+            <div class="form_design">
+                
+                <div class="col-auto">
+                    <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                    <button type="submit">Search Book</button>
+                </div>
+            </div>
+        </form>
+
+
+
+    </div>
+
+</body>
+
+</html>

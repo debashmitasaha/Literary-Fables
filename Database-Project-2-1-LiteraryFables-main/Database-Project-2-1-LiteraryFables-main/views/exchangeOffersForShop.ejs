@@ -1,0 +1,104 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href=""
+                            style="color: grey; font-family: 'Raleway'; font-size: 20px; transform: translateX(200px)">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/addbook"
+                            style="color: grey; font-family: 'Raleway'; font-size: 20px; transform: translateX(200px)">ADD
+                            BOOK</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/updatebook"
+                            style="color: grey; font-family: 'Raleway'; font-size: 20px; transform: translateX(200px)">UPDATE
+                            BOOK INFO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/addmorecopies"
+                            style="color: grey; font-family: 'Raleway'; font-size: 20px; transform: translateX(200px)">ADD
+                            MORE COPIES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/exchangeOffersForShop"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">EXCHANGE
+                            OFFERS</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');
+
+    body {
+        background-color: #F3F2EC;
+        font-family: "Prata";
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div class="container" style="transform: translateY(200px)">
+        <p style="font-size: 30px;"> Exchange Offers</p>
+        <div class="row gx-15">
+            <% for(let i=0; i < offerarrayShop.length; i++) { %>
+                <div class="col-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="css/b1.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">User Name: <%= offerarrayShop[i].USER_NAME %>
+                            </p>
+                            <p class="card-text">User Email: <%= offerarrayShop[i].EMAIL %>
+                            </p>
+                            <p class="card-text">Offered Book: Name - <%= offerarrayShop[i].OFFERED_BOOK_NAME %> Price:
+                                    <%= offerarrayShop[i].OFFERED_BOOK_REAL_PRICE %>
+                            </p>
+                            <p class="card-text">The book user want in return: Name - <%=
+                                    offerarrayShop[i].EXCHANGED_BOOK_NAME %> Price: <%=
+                                        offerarrayShop[i].EXCHANGED_BOOK_PRICE %>
+                            </p>
+                            <p class="card-text">Profit: <%= offerarrayShop[i].PROFIT %>
+                            </p>
+
+                            <form action="/acceptExchangeOffer" method="POST">
+                                <input type="hidden" name="USER_ID" value="<%= offerarrayShop[i].USER_ID %>">
+                                <input type="hidden" name="EXCHANGE_ID" value="<%= offerarrayShop[i].EXCHANGE_ID %>">
+                                <!-- <input type="hidden" name="SHOP_ID" value="<%= offerarrayShop[i].SHOP_ID %>"> -->
+                                
+                                <button class="btn">ACCEPT OFFER</button>
+                            </form>
+                            <form action="/declineExchangeOffer" method="POST">
+                                <input type="hidden" name="USER_ID" value="<%= offerarrayShop[i].USER_ID %>">
+                                <input type="hidden" name="EXCHANGE_ID" value="<%= offerarrayShop[i].EXCHANGE_ID %>">
+                                <!-- <input type="hidden" name="SHOP_ID" value="<%= offerarrayShop[i].SHOP_ID %>"> -->
+                                
+                                <button class="btn">DECLINE OFFER</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

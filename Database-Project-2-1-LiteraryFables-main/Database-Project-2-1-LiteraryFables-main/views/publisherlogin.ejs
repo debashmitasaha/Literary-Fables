@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Publisher Login</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: 'Merriweather';
+            }
+
+            body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                background: url(css/bg3.jpg);
+            }
+
+            main{
+                width: 300px;
+                padding: 20px;
+                border-radius: 10px;
+                border: 2px solid white;
+                background-color: transparent;
+                backdrop-filter: blur(30px);
+                position: relative;
+            }
+
+            main header{
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%);
+                padding: 10px 20px;
+                background-color: beige;
+                border-radius: 0 0 10px 10px;
+            }
+
+            form{
+                margin-top: 80px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            input[type="text"],
+            input[type="password"]{
+                padding: 10px;
+                border: 2px solid white;
+                width: 100%;
+                border-radius: 25px;
+                outline: none;
+                background-color: transparent;
+                color: white;
+            }
+
+            .form-design{
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            label{
+                position: absolute;
+                left: 30px;
+                text-align: center;
+                font-size: 12px;
+                color: white;
+                transition: .2s;
+            }
+
+            a{
+                color: wheat;
+            }
+
+            p{
+                color: white
+            }
+
+            button{
+                border: none;
+                padding: 10px;
+                border-radius: 25px;
+                cursor: pointer;
+                background-color: beige;
+            }
+
+            
+            input:valid+label,
+            input:focus+label{
+                background-color: transparent;
+                color: white;
+                transform: translate(2px, 8px);
+                padding: 2px 5px;
+                font-size: 12px;
+                border-radius: 4px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <h4>Login</h4>
+            </header>
+            <form action="/publisherlogin" method="POST">
+                <div class="form_design">
+                    <input type="text" id="Name" name="NAME">
+                    <label for="Name">Name</label>
+                </div>
+                <div class="form_design">
+                    <input type="password" id="Password" name="PASSWORD">
+                    <label for="Password">Password</label>
+                </div>
+                <button>submit</button>
+                    <p>Not signed up?</p>
+                    <a href="/publishersignup">Sign Up!</a>
+            </form>
+            
+        </main>
+        
+    </body>
+</html>

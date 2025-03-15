@@ -1,0 +1,202 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycart/<%= user_id%>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) "> MY CART
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/borrowedbooks/<%= user_id%>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY BOOKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY EXCHANGE OFFERS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mysuccessfuloffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            SUCCESSFUL OFFERS
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');      
+        
+
+        body {
+    font-family: "Merriweather";
+    margin: 0;
+    padding: 0;
+    background-color: #F3F2EC;
+            
+}
+
+.container1 {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: linear-gradient(to bottom, #fafafa, #f0f0f0);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.plans {
+    display: flex;
+    justify-content: center;
+}
+
+.plan {
+    margin: 20px;
+    padding: 20px;
+    background: linear-gradient(to bottom, #ffffff, #f6f6f6);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.plan:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.plan h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.price {
+    font-size: 20px;
+    color: #666;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background: linear-gradient(to bottom, #ff5722, #ff8c00);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #ff6a00, #ff8c00);
+}
+
+    </style>
+<body>
+    <div class="container" style="transform: translateY(200px)">
+        <div class="container1">
+            <h1>Choose Your Plan</h1>
+            <div class="plans">
+                <div class="plan">
+                    <h2>Free</h2>
+                    <p class="price">0tk/month</p>
+                    <ul>
+                        <li>Borrowed Books Limit: 10/day</li>
+                        <li>Late Fee Rate: 75tk/day</li>
+                        <li>Discount Rate Per Card-Level: 5%</li>
+                        <li>Exchange Limit: 5/day</li>
+                        
+                    </ul>
+                    <% if(type == 'FREE') {%>
+                        <button>Current Plan</button>
+                    <% }else { %>
+                        <form action="/freesub" method="POST">
+                            <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                            <button>Choose</button>
+                        </form>
+                    <% } %>
+                </div>
+                <div class="plan">
+                    <h2>Pro</h2>
+                    <p class="price">100tk/month</p>
+                    <ul>
+                        <li>Borrowed Books Limit: 20/day</li>
+                        <li>Late Fee Rate: 50tk/day</li>
+                        <li>Discount Rate Per Card-Level: 7%</li>
+                        <li>Exchange Limit: 10/day</li>
+                        
+                    </ul>
+                    <% if(type == 'PRO') {%>
+                        <button>Current Plan</button>
+                    <% }else { %>
+                        <form action="/prosub" method="POST">
+                            <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                            <button>Choose</button>
+                        </form>
+                    <% } %>
+                </div>
+                <div class="plan">
+                    <h2>Ultimate</h2>
+                    <p class="price">200tk/month</p>
+                    <ul>
+                        <li>Borrowed Books Limit: 40/day</li>
+                        <li>Late Fee Rate: 25tk/day</li>
+                        <li>Discount Rate Per Card-Level: 10%</li>
+                        <li>Exchange Limit: 15/day</li>
+                        
+                    </ul>
+                    <% if(type == 'ULTIMATE') {%>
+                        <button>Current Plan</button>
+                    <% }else { %>
+                        <form action="/ultsub" method="POST">
+                            <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                        
+                            <button>Choose</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+          
+    </div>
+    
+</body>
+</html>

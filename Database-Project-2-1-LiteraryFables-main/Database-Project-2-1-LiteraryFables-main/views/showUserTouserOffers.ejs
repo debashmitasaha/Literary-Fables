@@ -1,0 +1,133 @@
+<!-- now --><html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(280px) ">HOME</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userOffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(280px) ">MY OFFERS</a>
+
+                    </li>
+              
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');
+
+    body {
+        background-color: #F3F2EC;
+        font-family: "Prata";
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div class="container " style="transform: translateY(200px);">
+        
+        <p style="font-size: 25px;">OFFERS I MADE</p>
+
+        <div class="row gx=15">
+            <% for(let i=0;i<arr1.length; i++){ %>
+                <div class="col-3">
+                    <div class="card" style="width: 18rem ">
+                        <img src="css/shopCover.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">
+                                Offered To: <%= arr1[i].NAME %>
+                            </p>
+                            <p class="card-text">
+                                The book I offered: <%= arr1[i].O_NAME %>
+                            </p>
+                            <p class="card-text">
+                                The book I want: <%= arr1[i].E_NAME %>
+                            </p>
+                            <p class="card-text">
+                                <% if(arr1[i].STATUS) { %>
+                                Status:Accepted 
+                                <% } %>
+                                <% if(!arr1[i].STATUS) { %>
+                                    Status:Pending 
+                                    <% } %>
+                                    <% if(arr1[i].STATUS == -1) { %>
+                                        Status:Declined
+                                        <% } %>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+        </div>
+
+        </br>
+
+
+        <p style="font-size: 25px;">OFFERS I GOT</p>
+
+        <div class="row gx=15">
+            <% for(let i=0;i<arr2.length; i++){ %>
+                <div class="col-3">
+                    <div class="card" style="width: 18rem ">
+                        <img src="css/shopCover.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">
+                                Offer From: <%= arr2[i].NAME %>
+                            </p>
+                            <p class="card-text">
+                                The book they offered: <%= arr2[i].O_NAME %>
+                            </p>
+                            <p class="card-text">
+                                The book they want: <%= arr2[i].E_NAME %>
+                            </p>
+                            <p class="card-text">
+                                Book Condition: <%= arr2[i].CONDITION %>
+                            </p>
+                            
+                            <form action="/acceptuserOffer/<%= user_id %>" method="POST">
+                                <input type="hidden" id="USER_ID" name="USER_ID" value="<%= user_id %>">
+                                <input type="hidden" id="USER_ID2" name="USER_ID2" value="<%= arr2[i].U_FROM  %>">
+                                <input type="hidden" id="O_ID" name="O_ID" value="<%= arr2[i].EXCHANGED_BOOK_ID  %>">
+                                <input type="hidden" id="E_ID" name="E_ID" value="<%= arr2[i].OFFERED_BOOK_ID  %>">
+                                
+                                <button class="btn">ACCEPT OFFER</button>
+                            </form>
+                            <form action="/declineuserOffer/<%= user_id %>" method="POST">
+                                <input type="hidden" id="USER_ID" name="USER_ID" value="<%= user_id %>">
+                                <input type="hidden" id="USER_ID2" name="USER_ID2" value="<%= arr2[i].U_FROM  %>">
+                                <button class="btn">DECLINE OFFER</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+        </div>
+        
+    </div>
+
+</body>
+
+</html>

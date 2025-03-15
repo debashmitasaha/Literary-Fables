@@ -1,0 +1,224 @@
+
+<!-- <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+
+
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Merriweather';
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        /* background: url(css/p6.jpeg); */
+    }
+
+    main {
+        width: 300px;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid black;
+        background-color: wheat;
+        /* backdrop-filter: blur(30px); */
+        position: relative;
+    }
+
+    main header {
+        position: absolute;
+        font-size: 15px;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 10px 20px;
+        background-color: beige;
+        border-radius: 0 0 5px 5px;
+    }
+
+    form {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        padding: 10px;
+        border: 2px solid white;
+        width: 100%;
+        border-radius: 25px;
+        outline: none;
+        background-color: wheat;
+        color: black;
+    }
+
+    .form-design {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    label {
+        position: absolute;
+        left: 30px;
+        text-align: center;
+        font-size: 10px;
+        color: black;
+        transition: .2s;
+    }
+
+    a {
+        color: wheat;
+    }
+
+    p {
+        color: white
+    }
+
+    button {
+        border: none;
+        padding: 10px;
+        border-radius: 25px;
+        cursor: pointer;
+        background-color: beige;
+    }
+
+
+    input:valid+label,
+    input:focus+label {
+        background-color: wheat;
+        color: black;
+        transform: translate(2px, 8px);
+        padding: 2px 5px;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+</style>
+
+<body>
+    <main>
+        <header>
+            <h4>MAKE EXCHANGE OFFER</h4>
+        </header>
+        <form action="/exchangewithUser/<%= user_id%>/<%= user2 %>" , method="POST">
+            <div class="form_design">
+                
+                <label for="type" style="font-size: 15px; transform: translateY(-30px);">Offered Book Name:</label>
+                <select id="type" name="OfferedBookName">
+                    <% for(let i=0;i<firstuserbooks.length;i++){ %>
+                    <option value="<%= firstuserbooks[i].NAME %>"><%= firstuserbooks[i].NAME %></option>
+                    <% } %>
+                </select>
+
+            </div>
+            <div class="form_design">
+                
+                <label for="t" style="font-size: 15px; transform: translateY(-30px);">Exchanged Book Name:</label>
+                <select id="t" name="ExchangedBookName">
+                    <% for(let i=0;i<seconduserbooks.length;i++){ %>
+                    <option value="<%= seconduserbooks[i].NAME %>"><%= seconduserbooks[i].NAME %></option>
+                    <% } %>
+                </select>
+            </div>
+            
+            <div class="form_design">
+                <label for="type" style="font-size: 15px; transform: translateY(-30px);">Condition:</label>
+                <select id="type" name="condition">
+                    <option value="Very Good">Very Good(Almost New)</option>
+                    <option value="Good">Good</option>
+                    <option value="Torn out">Torn out</option>
+                </select>
+            </div>
+
+            <div class="form_design">
+                <input type="hidden" id="USER_ID1" name="USER_ID1" value="<%= user_id%>">
+                <input type="hidden" id="USER_ID2" name="USER_ID2" value="<%= user2%>">
+            </div>
+            <button>submit</button>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>
+
+ -->
+ <style>
+    
+   </style>
+ 
+<div class="container">
+    <div class="card">
+        <a class="singup">Create Exchange Offer</a>
+        <form action="/exchangewithUser/<%= user_id%>/<%= user2 %>" , method="POST">
+        <div class="inputBox1">
+            
+            <span class="user">Offered Book Name</span>
+       
+                
+            <select id="type" name="OfferedBookName">
+                <% for(let i=0;i<firstuserbooks.length;i++){ %>
+                <option value="<%= firstuserbooks[i].NAME %>"><%= firstuserbooks[i].NAME %></option>
+                <% } %>
+            </select>
+        </div>
+
+        <div class="inputBox">
+           
+            <span>Exchanged Book Name</span>
+            <select id="t" name="ExchangedBookName">
+                <% for(let i=0;i<seconduserbooks.length;i++){ %>
+                <option value="<%= seconduserbooks[i].NAME %>"><%= seconduserbooks[i].NAME %></option>
+                <% } %>
+            </select>
+
+        </div>
+
+        <div class="inputBox">
+            
+            <span>Condition</span>
+            <select id="type" name="condition">
+                <option value="Very Good">Very Good(Almost New)</option>
+                <option value="Good">Good</option>
+                <option value="Torn out">Torn out</option>
+            </select>
+        </div>
+
+        <button class="enter">Make Offer</button>
+    </form>
+
+    </div>
+</div>

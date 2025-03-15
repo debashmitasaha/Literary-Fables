@@ -1,0 +1,358 @@
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Page</title>
+    
+    
+        <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(100px) ">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/mycart/<%= user_id%>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(100px) "> CART
+                                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/borrowedbooks/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(100px) ">MY INFO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(100px) ">CARDS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(100px) ">
+                                EXCHANGE OFFERS
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/mysuccessfuloffers/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(100px) ">
+                                SUCCESSFUL OFFERS
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <form action="/searchByName/<%= user_id %>" method="POST">
+                                <input type="text" placeholder="Write Here" style="font-size: 15px; font-family: prata;" id="Name"
+                                    name="Name">
+                                    <a class="navbar-brand"  style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(-70px) ">  <button class="btn"><i class="bi bi-search"></i> </button></a>
+                                <label for="Name" style="transform: translatex(-100px) "  ></label>
+                                <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                               
+                            </form>
+                            <a class="navbar-brand" href="/search/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 15px ; transform: translatex(-20px)">
+                                Advanced Search
+                            </a>
+                        </li>
+
+                        <a class="navbar-brand" href="/userTouser/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 15px ; transform: translatex(50px) translateY(60px) ">
+                            User To User Exchange
+                        </a>
+                        
+                        
+                        
+                        <!-- <li class="nav-item">
+                            <a class="navbar-brand" href="/updatebook"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">UPDATE
+                                BOOK INFO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/addmorecopies"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">ADD
+                                MORE COPIES</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    </head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');
+        
+        body {
+            background-color: #F3F2EC;
+            font-family: "Prata";
+            font-size: 20px;
+        }
+        
+        .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 350px;
+        height: 250px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+
+        .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        }
+
+        .card {
+        font-family: 'Merriweather';
+        width: 220px;
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        }
+
+        .card img {
+        width: 100%;
+        height: auto;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        }
+
+        .card .info {
+        padding: 20px;
+        }
+
+        .card h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.2rem;
+        color: #333;
+        }
+
+        .card p {
+        margin: 0 0 8px 0;
+        font-size: 0.9rem;
+        color: #666;
+        }
+
+        .quantity {
+        width: 70px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        outline: none;
+        }
+
+        .card .btn {
+        display: inline-block;
+        transform: translateX(10px);
+        width: 170px;
+        padding: 12px 24px;
+        background-color: #3498db;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        .card .btn:hover {
+        background-color: #2980b9;
+        }
+
+        .cart-icon {
+        vertical-align: middle;
+        margin-left: 5px;
+        }
+
+    </style>
+    
+    <body>
+        <div class="container " style="transform: translateY(200px);">
+            <p style="font-size: 20px;">TOTAL AMOUNT SPENT: <%= total_amount %></p>
+            <p style="font-size: 25px;">BOOKSHOPS</p>
+            <p>Number of Exchanges you can make today: <%= (emax-ecnt) %></p>
+            
+            <div class="row gx-15">
+                <% for(let i=0;i<bookshoparray.length; i++){ %>
+                    <div class="col-3">
+                        
+
+                        <div class="card">
+                            <img src="css/shopCover.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <%= bookshoparray[i].NAME %>
+                                </p>
+                                <p class="card-text">
+                                    Total Number of Books: <%= bookshoparray[i].TOTAL_NUMBER_OF_BOOKS %>
+                                </p>
+                                <form action="/userpageafterlogin" method="POST">
+                                    <input type="hidden" id="SHOP_ID" name="SHOP_ID" value="<%=bookshoparray[i].SHOP_ID%>">
+                                    <input type="hidden" id="USER_ID" name="USER_ID" value="<%=user_id%>">
+                                    
+                                    <button class="btn">Show all books</button>
+                                </form>
+                                <form action="/exchangeOffer" method="POST">
+                                    <input type="hidden"  name="SHOP_ID" value= "<%= bookshoparray[i].SHOP_ID%>">
+                                    <input type="hidden"  name="USER_ID" value="<%= user_id %>">
+                                    <button class="btn" id="exchangebtn"><small>MAKE EXCHANGE</small> </button>
+                                </form>
+                               
+                                <!-- <a href="/showallbooks">Book List</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    
+            </div>
+            </br>
+            <p style="font-size: 25px;">LIBRARIES</p>
+            <% if(max != 0) {%>
+                <p>Number of books you can borrow today: <%= (max - cnt) %></p>
+            <% } else {%>
+                <p>You don't have a library card, you can't borrow books</p>
+            <% } %>
+            <div class="row gx=15">
+                <% for(let i=0;i<libraryarray.length; i++){ %>
+                    <div class="col-3">
+                        <div class="card">
+                            <img src="css/shopCover.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <%= libraryarray[i].NAME %>
+                                </p>
+                                <p class="card-text">
+                                    Total Number of Books: <%= libraryarray[i].TOTAL_NO_BOOKS %>
+                                </p>
+                                <form action="/userpageafterlogin1" method="POST">
+                                    <input type="hidden" id="SHOP_ID" name="LIBRARY_ID" value="<%=libraryarray[i].LIBRARY_ID%>">
+                                    <input type="hidden" id="USER_ID" name="USER_ID" value="<%=user_id%>">
+                                    
+                                    <button class="btn">Show all books</button>
+                                </form>
+                                <!-- <a href="/showallbooks">Book List</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    
+            </div>
+
+            <% console.log('overdue books: ' + overdue_books + ' ' + c)  %>
+            <div id="div1" data-test="<%= overdue_books %>"></div>
+            <div id="div1" data-test="<%= c %>"></div>
+            
+            <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <% console.log('inside first modal') %>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">OVERDUE BOOKS</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                You have <%= overdue_books %> overdue books
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        <% if(overdue_books > 0 && c == 1) {%>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3>Overdue Books!</h3>
+                </br>
+                <p>You have <%= overdue_books %> overdue books</p>
+                <button class="btn btn-primary" onclick="goToMyBooks()">Go To My Books</button>
+                </div>
+            </div>
+        <% } %>
+
+        <div id="myModal1" class="modal">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal1()">&times;</span>
+            <h3>Error!</h3>
+            </br>
+            <p>You can not exchange any more books</p>
+            <button class="btn btn-primary" onclick="goToMyBooks()">Go To My Books</button>
+            </div>
+        </div>
+
+        <script>
+             var modal = document.getElementById("myModal");
+             var modal1 = document.getElementById("myModal1");
+
+        // When the DOM is fully loaded, show the modal
+            document.addEventListener('DOMContentLoaded', function () {
+                modal.style.display = "block";
+            });
+
+            function goToMyBooks(){
+                window.location.href='/borrowedbooks/<%= user_id %>'
+            }
+
+            // Close the modal when the user clicks on the close button
+            function closeModal() {
+                modal.style.display = "none";
+                
+            }
+
+            var btn = document.getElementById('exchangebtn')
+            btn.onclick = function(){
+                modal1.style.display = "block";
+            }
+
+            function closeModal1() {
+                modal1.style.display = "none";
+            }
+            
+           
+        </script>
+            
+                      
+        
+    </body>
+    
+    </html>

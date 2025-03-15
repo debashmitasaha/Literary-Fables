@@ -1,0 +1,161 @@
+<!-- <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Sign Up</title>
+</head>
+<body>
+    <p>SIGN UP FORM</p>
+    <form action="/userSignUpform" , method ="POST">
+        <label>NAME</label>
+        <input type ="text" id="NAME" name="NAME">
+        <label>EMAIL</label>
+        <input type ="text" id="EMAIL" name="EMAIL">
+        <label>Password</label>
+        <input type="password" id="PASSWORD" name ="PASSWORD">
+        <button>Submit</button>
+    </form>
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>User Sign Up</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: 'Merriweather';
+            }
+
+            body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                background: url(css/bg3.jpg);
+            }
+
+            main{
+                width: 300px;
+                padding: 20px;
+                border-radius: 10px;
+                border: 2px solid white;
+                background-color: transparent;
+                backdrop-filter: blur(30px);
+                position: relative;
+            }
+
+            main header{
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%);
+                padding: 10px 20px;
+                background-color: beige;
+                border-radius: 0 0 10px 10px;
+            }
+
+            form{
+                margin-top: 80px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            input[type="text"],
+            input[type="password"]
+            {
+                padding: 10px;
+                border: 2px solid white;
+                width: 100%;
+                border-radius: 25px;
+                outline: none;
+                background-color: transparent;
+                color: white;
+            }
+
+            .form-design{
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            label{
+                position: absolute;
+                left: 30px;
+                text-align: center;
+                font-size: 12px;
+                color: black;
+                transition: .2s;
+            }
+            ::placeholder{
+                position: absolute;
+                left: 30px;
+                text-align: center;
+                font-size: 12px;
+                color: black;
+                transition: .2s;
+            }
+
+            a{
+                color: wheat;
+            }
+
+            p{
+                color: white
+            }
+
+            button{
+                border: none;
+                padding: 10px;
+                border-radius: 25px;
+                cursor: pointer;
+                background-color: beige;
+            }
+
+            
+            input:valid+label,
+            input:focus+label{
+                background-color: transparent;
+                color: white;
+                transform: translate(2px, 8px);
+                padding: 2px 5px;
+                font-size: 12px;
+                border-radius: 4px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <h4>Sign Up</h4>
+            </header>
+            <form action="/userSignUpform" , method ="POST">
+                <div class="form_design">
+                    <input type="text" placeholder="Name" id="Name" name="NAME">
+                    <label for="Name"></label>
+                </div>
+                <div class="form_design">
+                    <input type="text" placeholder="Email" id="Email" name="EMAIL">
+                    <label for="Email"></label>
+                </div>
+                <div class="form_design">
+                    <input type="password" placeholder="Password" id="Password" name="PASSWORD">
+                    <label for="Password"></label>
+                </div>
+                <button>submit</button>
+                    
+            </form>
+            
+        </main>
+        
+    </body>
+</html>

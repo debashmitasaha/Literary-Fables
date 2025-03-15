@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJS Variables Inside Script Tag</title>
+</head>
+<body>
+    <h1>Hello, <%= userName %></h1>
+
+    <script>
+        // You can use EJS variables inside script tags
+        var userAge = <%= userAge %>;
+        console.log('User age:', userAge);
+    </script>
+</body>
+</html>

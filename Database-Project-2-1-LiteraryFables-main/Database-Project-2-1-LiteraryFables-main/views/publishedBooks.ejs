@@ -1,0 +1,92 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href=""
+                            style="color: grey; font-family: 'Raleway'; font-size: 20px; transform: translateX(200px)">HOME</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/updatebook/<%= s_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">UPDATE
+                            BOOK INFO
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');
+
+    body {
+        background-color: #F3F2EC;
+        font-family: "Prata";
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div style="transform: translateY(100px)">
+        <form action="/searchPublishedBooks/<%= s_id %>" method="POST">
+            <input type="text" placeholder="Write Here" style="font-size: 15px; font-family: prata; color: black;"
+                id="Name" name="Name">
+            <a 
+                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(400px)  translateY(300px) ">
+                <button class="btn"><i class="bi bi-search"></i> </button></a>
+            <label for="Name" style="transform: translatex(500px) translateY(300px) "></label>
+            <input type="hidden" name="SHOP_ID" value="<%= s_id %>">
+            
+        </form>
+    </div>
+    <div class="container" style="transform: translateY(200px)">
+
+        <div class="row gx-15">
+            <% for(let i=0; i < bookarray.length; i++) { %>
+                <div class="col-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="css/b1.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Name: <%= bookarray[i].BOOK_NAME %>
+                            </p>
+                            <p class="card-text">Genre: <%= bookarray[i].GENRE %>
+                            </p>
+                            <p class="card-text">Author: <%= bookarray[i].NAME %>
+                            </p>
+                            <p class="card-text">Publisher: <%= bookarray[i].PUBLISHER_NAME %>
+                            </p>
+
+                            <form action="/publishedBookPurchase" method="POST">
+                                <input type="hidden" name="SHOP_ID" value="<%= s_id %>">
+                                <input type="hidden" name="BOOK_ID" value="<%= bookarray[i].BOOK_ID %>">
+
+                                <label>Copies to add</label>
+                                <input type="text" name="COPY_NO">
+                                </br>
+                                <button class="btn">PURCHASE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    </div>
+
+</body>
+
+</html>

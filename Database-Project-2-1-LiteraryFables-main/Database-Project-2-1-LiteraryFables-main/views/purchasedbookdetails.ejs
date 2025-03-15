@@ -1,0 +1,223 @@
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Page</title>
+    
+    
+        <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/mycart/<%= user_id%>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) "> MY CART
+                                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/borrowedbooks/<%= user_id%>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY BOOKS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY CARDS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                                MY EXCHANGE OFFERS
+                            </a>
+                        </li>
+                        
+    
+                        <!-- <li class="nav-item">
+                            <a class="navbar-brand" href="/updatebook"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">UPDATE
+                                BOOK INFO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/addmorecopies"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">ADD
+                                MORE COPIES</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    </head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');
+    
+        body {
+            background-color: #F3F2EC;
+            font-family: "Prata";
+            font-size: 20px;
+        }
+        p{
+            font-size: 20px;
+        }
+    </style>
+    
+    <body>
+        <div class="container " style="transform: translateY(200px);">
+            
+            <div class="row gx=15">
+                <div class="col-6">
+                    <img src="css/b1.jpeg" alt="">
+                </div>
+                <div class="col-6">
+                    <p style="font-size: 30px;">BOOK DETAILS</p>
+                    <p>Name: <%= pbook.NAME %></p>
+                    <p>Genre: <%= pbook.GENRE %></p>
+                    <p>Shop Name: <%= shopname %></p>
+                    <p>You have bought <%= copy_no %> copies of this book</p>
+                    <% if(myreview != null && myreview.CURRENTLY_READING == 'Yes'){%>
+                        <p>You are currently reading this book</p>
+                    <% } else {%>
+                        <% console.log('1') %>
+                        <% let review; %>
+                        <% if(myreview == null){ review = null%>
+                        <% }else review = 'r' %>
+                    
+                        <form action="/purchasedbook1" method="POST">
+                            <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                            <input type="hidden" name="SHOP_ID" value="<%= shop_id %>">
+                            <input type="hidden" name="BOOK_ID" value="<%= book_id %>">
+                            <input type="hidden" name="PRICE" value="<%= price %>">
+                            <input type="hidden" name="COPY_NO" value="<%= copy_no %>">
+                            <input type="hidden" name="REV" value="<%= review %>">
+                            
+                            <button class="btn btn-primary">Currently Reading</button>
+                            
+                        </form>
+                    <% } %>
+
+                    <% if(myreview != null && myreview.FINISHED_READING == 'Yes'){%>
+                        <p>You have finished reading this book</p>
+                    <% } else {%>
+                        <% let review; %>
+                        <% if(myreview == null) {review = null%>
+                        <% }else review = 'r' %>
+                    
+                        <form action="/purchasedbook2" method="POST">
+                            <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                            <input type="hidden" name="SHOP_ID" value="<%= shop_id %>">
+                            <input type="hidden" name="BOOK_ID" value="<%= book_id %>">
+                            <input type="hidden" name="PRICE" value="<%= price %>">
+                            <input type="hidden" name="COPY_NO" value="<%= copy_no %>">
+                            <input type="hidden" name="REV" value="<%= review %>">
+                            
+
+                            <button class="btn btn-info">Finished Reading</button>
+                            
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="row gx=15">
+                <% if(myreview == null || myreview.RATING == null){ %>
+                    <p> You have not rated this book,</p>
+                    <p> Leave A Rating</p>
+                    <% let review; %>
+                    <% if(myreview == null){ review = null%>
+                    <% }else review = 'r' %>
+                        
+                    <form action="/purchasedbook3" method="POST">
+                        <input type="text" name="RATING" placeholder="rating">
+                        <input type="hidden" id="id" name="USER_ID" value="<%=user_id%>">
+                        <input type="hidden" name="SHOP_ID" value="<%= shop_id %>">
+                        <input type="hidden" name="BOOK_ID" value="<%= book_id %>">
+                        <input type="hidden" name="PRICE" value="<%= price %>">
+                        <input type="hidden" name="COPY_NO" value="<%= copy_no %>">
+                        <input type="hidden" name="REV" value="<%= review %>">
+                            
+
+                        <button class="btn btn-secondary">Rate!</button>
+                    </form>
+                <% } else { %>
+                    <p> You have rated this book <%= myreview.RATING %> out of 5.00</p>
+                    <p> Change Rating? </p>
+                    <form action="/purchasedbook5" method="POST">
+                        <input type="text" name="RATING" placeholder="rating">
+                        <input type="hidden" id="id" name="USER_ID" value="<%=user_id%>">
+                        <input type="hidden" name="SHOP_ID" value="<%= shop_id %>">
+                        <input type="hidden" name="BOOK_ID" value="<%= book_id %>">
+                        <input type="hidden" name="PRICE" value="<%= price %>">
+                        <input type="hidden" name="COPY_NO" value="<%= copy_no %>">
+
+                        <button class="btn btn-secondary">Rate!</button>
+                    </form>
+                <% } %>
+            </div>
+
+            <div class="row gx=15">
+                <% if(myreview == null || myreview.REVIEW_BODY == null){ %>
+                    <p> You have not reviewed this book,</p>
+                    <p> Leave A Review</p>
+                    <% let review; %>
+                    <% if(myreview == null) {review = null%>
+                    <% }else review = 'r' %>
+                        
+                    <form action="/purchasedbook6" method="POST">
+                        <textarea name="REVIEW_BODY" placeholder="Write a review" rows="6" cols="90"></textarea>
+                        <input type="hidden" id="id" name="USER_ID" value="<%=user_id%>">
+                        <input type="hidden" name="SHOP_ID" value="<%= shop_id %>">
+                        <input type="hidden" name="BOOK_ID" value="<%= book_id %>">
+                        <input type="hidden" name="PRICE" value="<%= price %>">
+                        <input type="hidden" name="COPY_NO" value="<%= copy_no %>">
+                        <input type="hidden" name="REV" value="<%= review %>">
+                        
+                        <button class="btn btn-secondary">Submit</button>
+                    </form>
+                <% } else { %>
+                    <p> You have reviewed this book</p>
+                    <textarea rows="6" cols="90"><%= myreview.REVIEW_BODY %></textarea>
+                    <p>Change Review?</p>
+                    <form action="/purchasedbook8" method="POST">
+                        <textarea name="REVIEW_BODY" placeholder="Write a review" rows="6" cols="90"></textarea>
+                        <input type="hidden" id="id" name="USER_ID" value="<%=user_id%>">
+                        <input type="hidden" name="SHOP_ID" value="<%= shop_id %>">
+                        <input type="hidden" name="BOOK_ID" value="<%= book_id %>">
+                        <input type="hidden" name="PRICE" value="<%= price %>">
+                        <input type="hidden" name="COPY_NO" value="<%= copy_no %>">
+
+                        <button class="btn btn-secondary">Submit</button>
+                    </form>
+                
+                <% } %>
+            </div>
+
+            <p style="font-size: 30px;">ALL REVIEWS:</p>
+            <% if(no_rev == 'True') {%>
+                <p>No reviews to show</p>
+            <% } else { %>
+            <% for(let i = 0; i < allreviews.length; i++) {%>
+                <div class="row gx=15">
+                    <% if(allreviews[i].RATING != null) {%>
+                        <p>User <%= allreviews[i].NAME %> gave this book <%= allreviews[i].RATING %> out of 5.00 rating</p>
+                    <% }%>
+                        <textarea rows="4" cols="70">
+                            <%= allreviews[i].REVIEW_BODY %>
+                        </textarea>
+                </div>
+            <% } %>
+            <% } %>
+
+            
+                     
+        </div>
+        
+    </body>
+    
+</html>

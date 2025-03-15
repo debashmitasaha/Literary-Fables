@@ -1,0 +1,139 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycart/<%= user_id%>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) "> MY CART
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/borrowedbooks/<%= user_id%>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY BOOKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY EXCHANGE OFFERS
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');      
+        
+        body{
+            background-color: #F3F2EC;
+            font-family: "Prata";
+            font-size: 20px;
+        }
+
+        .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 350px;
+        height: 250px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+
+        .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        }
+
+    </style>
+<body>
+    <div class="container" style="transform: translateY(200px)">
+        CART IS EMPTY
+
+    </div>
+    <% if(first_received == true || card_upgraded == true) {%>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <% if(first_received == true){ %>
+                <h3>Card Received!</h3>
+                </br>
+                <p>You have received a Level 1 Gift card</p>
+            <% }else if(card_upgraded == true) {%>
+                <h3>Card Upgraded!</h3>
+                </br>
+                <p>Your gift card has been upgraded</p>    
+            <% } %>
+            <button class="btn btn-primary" onclick="goToMyCards()">Go To My Cards</button>
+            </div>
+        </div>
+    <% } %>
+
+    <script>
+         var modal = document.getElementById("myModal");
+
+    // When the DOM is fully loaded, show the modal
+        document.addEventListener('DOMContentLoaded', function () {
+            modal.style.display = "block";
+        });
+
+        function goToMyCards(){
+            window.location.href='/mycards/<%= user_id %>'
+        }
+
+        // Close the modal when the user clicks on the close button
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        
+       
+    </script>
+    
+</body>
+</html>

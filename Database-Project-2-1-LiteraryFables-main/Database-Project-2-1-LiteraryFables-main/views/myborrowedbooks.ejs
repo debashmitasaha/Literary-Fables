@@ -1,0 +1,529 @@
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Page</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+        <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/mycart/<%= user_id%>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) "> MY CART
+                                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/borrowedbooks/<%= user_id%>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY BOOKS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY CARDS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                                MY EXCHANGE OFFERS
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/mysuccessfuloffers/<%= user_id %>"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                                SUCCESSFUL OFFERS
+                            </a>
+                        </li>
+                        
+    
+                        <!-- <li class="nav-item">
+                            <a class="navbar-brand" href="/updatebook"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">UPDATE
+                                BOOK INFO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="/addmorecopies"
+                                style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">ADD
+                                MORE COPIES</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    </head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');
+    
+        body {
+            background-color: #F3F2EC;
+            font-family: "Merriweather";
+            font-size: 20px;
+        }
+        p{
+            font-size: large;
+        }
+
+        canvas {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .container1 {
+  width: 70%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Merriweather";
+  transition: box-shadow 0.3s ease;
+  margin-left: 50px; /* Align to the left */
+}
+    /* Hover effect for container */
+    .container1:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style for paragraphs */
+    .container1 p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Style for headings */
+    .container1 h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    /* Style for links */
+    .container1 a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    /* Hover effect for links */
+    .container1 a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+            .container {
+                margin-top: 50px;
+            }
+        }
+
+        .dashboard-section {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Updated shadow */
+    padding: 20px;
+    margin-bottom: 30px;
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+    width: 110%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-section:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-section + .dashboard-section {
+    margin-top: 50px;
+}
+
+.section-header {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.section-content {
+    margin-bottom: 30px;
+}
+
+        .card {
+    border-radius: 20px; /* Increase border-radius for more roundness */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Make shadow more profound */
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+    margin-bottom: 60px; /* Add margin outside the cards */
+    padding: 20px;
+    width:582px; /* Add padding inside the cards */
+}
+
+/* Hover effect for cards */
+.card:hover {
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6); /* Make shadow more profound on hover */
+}
+
+    /* Card body styling */
+    .card-body {
+        padding: 20px;
+    }
+
+    /* Card text styling */
+    /* Stylish text decoration for card text */
+    .card-body p {
+    font-size: 16px;
+    color: #555; /* Adjust text color as needed */
+    line-height: 1.6; /* Adjust line height for better readability */
+}
+
+/* Stylish card header with properly aligned line */
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Add border lines below the card header */
+.card-title::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -5px; /* Adjust vertical position of the line */
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ccc; /* Line color */
+}
+
+/* Stylish card title */
+.card-title span {
+    background-color: #fff; /* Background color for better readability */
+    padding: 0 10px; /* Adjust padding as needed */
+}/* Media query for smaller devices */
+    @media (max-width: 768px) {
+        .card {
+            width: 100%; /* Make the cards take full width on smaller devices */
+        }
+    }
+ 
+
+    </style>
+    
+    <body>
+        <div class="container mt-5">
+            <!-- Borrowed Books Section -->
+            
+        </div>
+
+        <div class="container " style="transform: translateY(200px);">
+            <section class="dashboard-section">
+                <!-- Borrowed books content -->
+
+                <p class="section-header">BORROWED BOOKS</p>
+
+            <div class="row gx=15">
+                <% let late_fee %>
+                <% for(let i = 0; i < borrowedbooks.length; i++){ %>
+                    <% if(borrowedbooks[i].RET_DATE == null) {%>
+        
+                        <div class="card mb-3" style="font-size: small;">
+                            <div class="row g-10">
+                                    <div class="card-body">
+                                        <h5 class="card-title">BORROW INFO</h5>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p class="card-text">BOOK NAME: <%= borrowedbooks[i].NAME %></p>
+                                                <p class="card-text">YOU HAVE BORROWED <%= borrowedbooks[i].NUMBER_OF_COPIES %> COPIES</p>
+                                                <p class="card-text">YOU BORROWED THIS BOOK ON: <%= borrowedbooks[i].START_TIME %></p>
+                                                <p class="card-text">TODAY'S DATE IS: <%= borrowedbooks[i].TODAYS_DATE %></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="card-text">YOU HAVE TO RETURN THIS BOOK WITHIN: <%= borrowedbooks[i].RETURN_DAY_LIMIT %></p>
+                                                <% if(borrowedbooks[i].DAYS_REMAINING >= 0) { %>
+                                                    <p class="card-text">YOU HAVE <%= borrowedbooks[i].DAYS_REMAINING %> DAYS REMAINING TO RETURN THIS BOOK</p>
+                                                <% } else { %>
+                                                    <% let days_overdue = Number(borrowedbooks[i].DAYS_REMAINING) * -1 %>
+                                                    <p class="card-text">YOU ARE <%= days_overdue %> DAY/DAYS OVERDUE</p>
+                                                <% } %>
+                                                <p class="card-text">LATE FEE: <%= borrowedbooks[i].LATE_FEE %></p>
+                                            </div>
+                                        </div>
+                                        <form action="/returnbook" method="post">
+                                            <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                                            <input type="hidden" name="LIBRARY_ID" value="<%= borrowedbooks[i].LIBRARY_ID %>">
+                                            <input type="hidden" name="BOOK_ID" value="<%= borrowedbooks[i].BOOK_ID %>">
+                                            <input type="hidden" name="LATE_FEE" value="<%= late_fee %>">
+                                            <button class="btn btn-primary" style="transform: translateX(12px),translateY(6px);">Return</button>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            
+                        
+                    </div>
+                    <% } %>
+                <% } %>
+                
+            
+            </div>
+                
+            </section>
+    
+            <!-- Bought Books Section -->
+            <section class="dashboard-section">
+                <!-- Bought books content -->
+                <p class="section-header">BOUGHT BOOKS</p>
+
+                <div class="row">
+                    <% let len; %>
+                <% if(boughtbooks.length <= 8) { len = boughtbooks.length; %>
+                <% } else len = 8; %>
+                <% for(let i = 0; i < len; i++) { %>
+                    <div class="col-3">
+                        <div class="card" style="width: 18rem;">
+                            <img src="css/b1.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <p class="card-text">Book Name:<%= boughtbooks[i].NAME %></p>
+                              <p class="card-text">Genre:<%= boughtbooks[i].GENRE %></p>
+                              
+                              <form action="/allbooks1" method="POST">
+                                <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                                <input type="hidden" name="BOOK_ID" value="<%= boughtbooks[i].BOOK_ID %>">
+                                <input type="hidden" name="SHOP_ID" value="<%= boughtbooks[i].SHOP_ID %>">
+                                <input type="hidden" name="PRICE" value="<%= boughtbooks[i].PRICE %>">
+                                <input type="hidden" name="COPY_NO" value="<%= boughtbooks[i].COPY_NO %>">
+                                
+                                </br>
+                                <button class="btn">SHOW DETAILS</button>
+                              </form>
+                              
+                            </div>
+                        </div>            
+                    </div>
+                <% } %>
+                <% if(len != boughtbooks.length) {%>
+                    <form action="/allbooks2" method = "POST">
+                        <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                        <button class="btn">SHOW ALL BOUGHT BOOKS</button>
+                    </form>
+                <% } %>    
+                                
+            
+                </div>
+                
+
+            </section>
+    
+            <!-- Subscription Section -->
+            <section class="dashboard-section">
+                <!-- Subscription content -->
+                <div class="row">
+                    <div class="container1">
+                        <p class="section-header">My Subscription</p>
+                    <% if(type == 'FREE') {%>
+                        <p>   Type: <%= type %></p>
+                        <p>   Number of Books I Can Borrow Daily: 10</p>
+                        <p>   Late Fee Rate: 75tk/day</p>
+                        <p>   Number of Exchanges I Can Make Daily: 5</p>
+                        <p>   Discount Rate per Card-level: 5%</p>
+                        
+                    <% }else if(type == 'PRO') {%>
+                        <p>   Type: <%= type %></p>
+                        <p>   Number of Books I Can Borrow Daily: 20</p>
+                        <p>   Late Fee Rate: 50tk/day</p>
+                        <p>   Number of Exchanges I Can Make Daily: 10</p>
+                        <p>   Discount Rate per Card-level: 7%</p>
+                    <% } else if(type == 'ULTIMATE') {%>
+                        <p>   Type: <%= type %></p>
+                        <p>   Number of Books I Can Borrow Daily: 40</p>
+                        <p>   Late Fee Rate: 50tk/day</p>
+                        <p>   Number of Exchanges I Can Make Daily: 15</p>
+                        <p>   Discount Rate per Card-level: 10%</p>
+                    <% } %>    
+                    <form action="/mysub" method="POST">
+                        <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                        <input type="hidden" name="TYPE" value="<%= type %>">
+                        
+                        <button type="btn btn-primary">Change Subscription Plan</button>
+                    </form>
+                    </div>
+                    
+                </div>
+    
+
+            </section>
+    
+            <!-- Monthly Statistics Section -->
+            <section class="dashboard-section">
+                <!-- Monthly statistics content -->
+                <div class="row">
+                    <p class="section-header">MONTHLY STATISTICS</p>
+                <canvas id="myChart"></canvas>
+                <script>
+                    // Sample data for bought and borrowed books
+                    var boughtBooks = [<%= boughtbookscount %>];
+                    console.log(boughtBooks);
+                    var borrowedBooks = [<%= borrowedbookscount %>];
+                    console.log(borrowedBooks);
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            datasets: [{
+                                label: 'Bought Books',
+                                data: boughtBooks,
+                                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            }, {
+                                label: 'Borrowed Books',
+                                data: borrowedBooks,
+                                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+               
+                </div>
+    
+            </section>
+    
+            <!-- Books Bought from Different Shops Section -->
+            <section class="dashboard-section">
+                <div class="row">
+                    <canvas id="myPieChart"></canvas>
+    
+                <script>
+                    // Sample data for number of books bought from different shops
+    
+                    var shops = [];
+                    let len = <%= shopNames.length %>; 
+                    for(let i = 1; i <= len; i++){
+                        shops.push('Shop ' + i)
+                    }
+                    var booksBought = [<%= shopBooksCount %>]; // Number of books bought from each shop
+    
+                    var ctx = document.getElementById('myPieChart').getContext('2d');
+                    var myPieChart = new Chart(ctx, {
+                        type: 'polarArea',
+                        data: {
+                            labels: shops,
+                            datasets: [{
+                                label: 'Books Bought',
+                                data: booksBought,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.5)',
+                                    'rgba(54, 162, 235, 0.5)',
+                                    'rgba(255, 206, 86, 0.5)',
+                                    'rgba(75, 192, 192, 0.5)',
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Books Bought from Different Shops (Polar Chart)'
+                    },
+                    scale: {
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        reverse: false
+                    },
+                    animation: {
+                        animateRotate: false,
+                        animateScale: true
+                    }
+                }
+                    });
+                </script>
+                </div>
+                
+                <!-- Books bought from different shops content -->
+            </section>
+    
+            <!-- Spending Section -->
+            <section class="dashboard-section">
+                <!-- Spending content -->
+                <div class="row">
+                    <canvas id="myLineChart"></canvas>
+    
+                        <script>
+                            // Sample data for bought and borrowed books
+                            var spendings = [<%= spendings %>]
+    
+                            var ctx = document.getElementById('myLineChart').getContext('2d');
+                            var myLineChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                    datasets: [{
+                                        label: 'Spending',
+                                        data: spendings,
+                                        fill: false,
+                                        borderColor: 'rgba(54, 162, 235, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                </div>
+           
+            </section>
+            
+            
+            
+            
+            
+                 
+        </div>
+
+
+         
+    </body>
+    
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Bookshop Login</title>
+        
+
+<nav>
+<div class= "navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href=""
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/addbook"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">ADD
+                            BOOK</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/updatebook"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">UPDATE
+                            BOOK INFO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/addmorecopies"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">ADD
+                            MORE COPIES</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div></nav>
+
+    <style>
+            @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: 'Merriweather';
+            }
+
+            body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                /* background: url(css/p6.jpeg); */
+            }
+
+            main{
+                width: 300px;
+                padding: 20px;
+                border-radius: 10px;
+                border: 2px solid black;
+                background-color: wheat;
+                /* backdrop-filter: blur(30px); */
+                position: relative;
+            }
+
+            main header{
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%);
+                padding: 10px 20px;
+                background-color: beige;
+                border-radius: 0 0 10px 10px;
+            }
+
+            form{
+                margin-top: 80px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            input[type="text"],
+            input[type="password"]{
+                padding: 10px;
+                border: 2px solid white;
+                width: 100%;
+                border-radius: 25px;
+                outline: none;
+                background-color: wheat;
+                color: black;
+            }
+
+            .form-design{
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            label{
+                position: absolute;
+                left: 30px;
+                text-align: center;
+                font-size: 12px;
+                color: black;
+                transition: .2s;
+            }
+
+            a{
+                color: wheat;
+            }
+
+            p{
+                color: white
+            }
+
+            button{
+                border: none;
+                padding: 10px;
+                border-radius: 25px;
+                cursor: pointer;
+                background-color: beige;
+            }
+
+            
+            input:valid+label,
+            input:focus+label{
+                background-color: wheat;
+                color: black;
+                transform: translate(2px, 8px);
+                padding: 2px 5px;
+                font-size: 12px;
+                border-radius: 4px;
+            }
+
+        </style>
+    </head><link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    
+
+
+    <body>
+        <div style="transform: translateY(150px);  ">
+            <h4 style="text-align: center; color: brown;">Add Book</h4>  
+        <main>
+            
+            <!-- <header>
+                <h4>Add Book</h4>
+            </header> -->
+            <form action="/addbook" method="POST">
+                
+                <!-- <h3>Add books</h3> -->
+                <div class="form_design">
+                    <input type="text" id="ISBN" name="ISBN">
+                    <label for="ISBN">ISBN</label>
+                </div>
+
+                <div class="form_design">
+                    <input type="text" id="Name" name="NAME">
+                    <label for="Name">Name</label>
+                </div>
+                <div class="form_design">
+                    <input type="text" id="Genre" name="GENRE">
+                    <label for="Genre">Genre</label>
+                </div>
+                <div class="form_design">
+                    <input type="text" id="Locked" name="LOCKED">
+                    <label for="Locked">Locked</label>
+                </div>
+                <div class="form_design">
+                    <input type="text" id="Price" name="PRICE">
+                    <label for="Price">Price</label>
+                </div>
+                <div class="form_design">
+                    <input type="text" id="NUMBER_OF_COPIES" name="NUMBER_OF_COPIES">
+                    <label for="NUMBER_OF_COPIES">Number of copies</label>
+                </div>
+                <div class="form_design">
+                    <input type="text" id="AUTHOR_ID" name="AUTHOR_ID">
+                    <label for="AUTHOR_ID">Author ID</label>
+                </div>
+                <input type ="hidden" name="SHOP_ID" value="<%=id %>">
+        
+                <button>submit</button>
+                     </form>
+                    
+        </main>
+    </div>
+        
+    </body>
+</html>

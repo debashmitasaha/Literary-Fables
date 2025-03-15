@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> numbers </title>
+    </head>
+    <body>
+        <%for(let i = 0; i < bookshoparray.length; i++){%>
+            <p><%= bookshoparray[i].NAME %></p>
+            <%for(let j = 0; j < bookarray.length; j++){%>
+                <% if(bookarray[j].SHOP_ID == bookshoparray[i].SHOP_ID){%>
+                    <P> <%= bookarray[j].NAME %> </p>
+                <% } %>
+            <% } %>    
+        <% } %>
+    </body>
+</html>

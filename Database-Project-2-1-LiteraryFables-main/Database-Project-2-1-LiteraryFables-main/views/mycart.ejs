@@ -1,0 +1,236 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My cart</title>
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycart/<%= user_id%>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) "> MY CART
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/borrowedbooks/<%= user_id%>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY BOOKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY EXCHANGE OFFERS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mysuccessfuloffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            SUCCESSFUL OFFERS
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');      
+        
+        body{
+            background-color: #F3F2EC;
+            font-family: "Prata";
+            font-size: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        table {
+            font-family: 'Merriweather';
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            border-radius: 10px;
+        }
+        th {
+            background-color: rgba(7, 12, 116, 0.8);
+            color: #fff;
+            font-weight: bold;
+            border-radius: 0px;
+        }
+        td input {
+            width: 50px;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        td img {
+            max-width: 80px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .total {
+            font-weight: bold;
+            color: #28a745;
+            font-size: 18px;
+        }
+        .total-row {
+            background-color: grey;
+            font-size: 18px;
+        }
+        .total-label {
+            font-weight: bold;
+            text-align: right;
+            color: #fff;
+        }
+        #cart-total {
+            font-weight: bold;
+            color: #dc3545;
+            font-size: 18px;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(204, 204, 204, 0.3);
+        }
+        tr:hover td {
+            background-color: rgba(255, 255, 255, 0.95);
+            transition: background-color 0.3s ease;
+        }
+        tr {
+            transition: background-color 0.3s ease;
+        }
+
+
+    </style>
+<body>
+    <div class="container" style="transform: translateY(200px)">
+        <h2>Book Cart</h2>
+        <table>
+            <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Remove</th>
+            </tr>
+
+            <% for(let i = 0; i < bookarray.length; i++) {%>
+                <tr>
+                    <td><img src="css/b1.jpeg"></td>
+                    <td><%= bookarray[i].NAME %></td>
+                    <td><%= bookarray[i].GENRE %></td>
+                    <td>$<%= bookarray[i].PRICE / bookarray[i].NUMBER_OF_COPIES %></td>
+                    <td><%= bookarray[i].NUMBER_OF_COPIES %></td>
+                    <td class="total">$<%= bookarray[i].PRICE %></td>
+                    <form action="/mycart3" method="POST">
+                        <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                        <input type="hidden" name="CART_ID" value="<%= cart_id %>">
+                        <input type="hidden" name="SHOP_ID" value="<%= bookarray[0].SHOP_ID %>">
+                        <input type="hidden" name="BOOK_ID" value="<%= bookarray[i].BOOK_ID %>">
+            
+                        <td><button class="btn btn-danger">Remove</button></td>
+                    </form>
+                </tr>
+                
+    
+            <% } %>
+            <tr class="total-row">
+                <td colspan="2" class="total-label">Total:</td>
+                <td id="cart-total">$<%= total_cost %></td>
+                <td>Discount(<%=discount_percentage%>%): </td>
+                <td id="discount-total"><%= discount %></td>
+                <td id="final-total">$<%= total_cost - discount %></td>
+            </tr>
+
+        </table>
+
+        
+        
+        <form action="/mycart" method="POST">
+            <input type="hidden" name="USER_ID" value="<%= user_id %>">
+            <input type="hidden" name="CART_ID" value="<%= cart_id %>">
+            <input type="hidden" name="SHOP_ID" value="<%= bookarray[0].SHOP_ID %>">
+            <input type="hidden" name="DISCOUNT_PERCENTAGE" value="<%= discount_percentage %>">
+            
+            <button class="btn btn-primary" style="transform: translateX(800px);">PURCHASE</button>
+        </form>
+
+        <script>
+            var book_array = new Array[1000];
+            
+            
+            function updateTotal(input,i,nc,c_id,b_id,dp) {
+                var price = parseFloat(input.parentNode.previousElementSibling.textContent.replace('$', ''));
+                var quantity = parseInt(input.value);
+                var total = price * quantity;
+                var row = input.parentNode.parentNode;
+                row.getElementsByClassName('total')[0].textContent = '$' + total.toFixed(2);
+                console.log('inside function');
+
+                var cartTotal = 0;
+                var totals = document.querySelectorAll('.total');
+                totals.forEach(function(total) {
+                    cartTotal += parseFloat(total.textContent.replace('$', ''));
+                });
+
+                var dis = (cartTotal * dp) / 100;
+                console.log(dis)
+
+                document.getElementById('cart-total').textContent = '$' + cartTotal.toFixed(2);
+                document.getElementById('discount-total').textContent = '$' + dis.toFixed(2);
+                document.getElementById('final-total').textContent = '$' + (cartTotal - dis).toFixed(2);
+                
+                book_array[i] = {NUMBER_OF_COPIES: quantity, CART_ID: c_id, BOOK_ID: b_id}
+                console.log("Num copies: " + book_array[i].NUMBER_OF_COPIES)
+                
+                
+            }
+
+            function setbookarr(){
+                var inputfield = document.getElementById('arr')
+                inputfield.value = book_array;
+            
+            }
+
+        
+        </script>
+
+        
+
+    </div>
+    
+</body>
+</html>

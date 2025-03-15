@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All Books</title>
+    <style>
+        table{
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            td,th{
+                border: 1px solid black;
+                padding: 5px;
+            }
+    </style>
+</head>
+<body>
+    
+    <%for(let i =0;i<bookshoparray.length;i++){%>
+        <p > <%= bookshoparray[i].NAME %></p>
+        <table>
+            <thead>
+                <th>Book Name</th>
+                <th> Genre</th>
+                <th>Price</th>
+                <th>Number of Copies</th>
+                <th>Current Number of Readers</th>
+            </thead>
+          
+                <%for(let j =0;j<bookarray.length;j++){%>
+                    <%if(bookarray[j].SHOP_ID == bookshoparray[i].SHOP_ID){%>
+                        <tbody>
+                    <td> <%= bookarray[j].NAME %></td>
+                    <td> <%= bookarray[j].GENRE %></td>
+                    <td> <%= bookarray[j].PRICE %></td>
+                    <td> <%= bookarray[j].NUMBER_OF_COPIES %></td>
+                    <td> <%= bookarray[j].CURRENT_NO_READERS %></td>
+                </tbody>
+                    <%}%>
+                <%}%>
+            
+        </table>
+        
+    <%}%>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/search/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            SEARCH
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycart/<%= user_id%>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY CART
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/borrowedbooks/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY
+                            BOOKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY
+                            CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY EXCHANGE OFFERS
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mysuccessfuloffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            SUCCESSFUL OFFERS
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display&family=Prata&family=Raleway:wght@300&display=swap');
+
+    body {
+        background-color: #F3F2EC;
+        font-family: "Prata";
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div class="container " style="transform: translateY(200px);">
+        <p style="font-size: 20px;">TOTAL AMOUNT SPENT: <%= total_amount %>
+        </p>
+        <p style="font-size: 25px;">BOOKSHOPS</p>
+
+        <div class="row gx=15">
+            <% for(let i=0;i<bookshoparray.length; i++){ %>
+                <div class="col-3">
+                    <div class="card" style="width: 18rem ">
+                        <img src="css/shopCover.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= bookshoparray[i].NAME %>
+                            </p>
+                            <p class="card-text">
+                                Total Number of Books: <%= bookshoparray[i].TOTAL_NUMBER_OF_BOOKS %>
+                            </p>
+                            <form action="/userpageafterlogin" method="POST">
+                                <input type="hidden" id="SHOP_ID" name="SHOP_ID" value="<%=bookshoparray[i].SHOP_ID%>">
+                                <input type="hidden" id="USER_ID" name="USER_ID" value="<%=user_id%>">
+
+                                <button class="btn">Show all books</button>
+                            </form>
+                            <form action="/exchangeOffer" method="POST">
+                                <input type="hidden" name="SHOP_ID" value="<%= bookshoparray[i].SHOP_ID%>">
+                                <input type="hidden" name="USER_ID" value="<%= user_id %>">
+                                <button class="btn">CREATE EXCHANGE OFFER</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+        </br>
+    </div>
+</body>
+</html>

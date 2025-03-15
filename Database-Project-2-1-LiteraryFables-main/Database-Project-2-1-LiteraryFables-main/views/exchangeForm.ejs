@@ -1,0 +1,175 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+
+
+    <div class="navbar navbar-expand fixed-top" style="border-bottom: 2px solid burlywood;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/shoppage" style="font-size: 40px; color: black">Literary Fables</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/userpageafterlogin/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycart/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY CART
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/borrowedbooks/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY
+                            BOOKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mycards/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">MY
+                            CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/myoffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            MY EXCHANGE OFFERS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/mysuccessfuloffers/<%= user_id %>"
+                            style="color:gray ; font-family:Raleway ; font-size: 20px ; transform: translatex(200px) ">
+                            SUCCESSFUL OFFERS
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
+<!-- <body>
+    <main>
+        <header>
+            <h4>MAKE EXCHANGE OFFER</h4>
+        </header>
+        <form action="/exchangeInfo/<%= user_id %>/<%= shop_id %>" , method="POST">
+            <div class="form_design">
+                
+                <label for="type" style="font-size: 15px; transform: translateY(-30px);">Offered Book Name:</label>
+                <select id="type" name="OfferedBookName">
+                    <% for(let i=0;i<boughtbooks.length;i++){ %>
+                    <option value="<%= boughtbooks[i].NAME %>"><%= boughtbooks[i].NAME %></option>
+                    <% } %>
+                </select>
+
+            </div>
+            <div class="form_design">
+                
+                <label for="t" style="font-size: 15px; transform: translateY(-30px);">Exchanged Book Name:</label>
+                <select id="t" name="ExchangedBookName">
+                    <% for(let i=0;i<shopbooks.length;i++){ %>
+                    <option value="<%= shopbooks[i].NAME %>"><%= shopbooks[i].NAME %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form_design">
+                <input type="text" placeholder="Offered Book Buying Price" id="BuyingPrice" name="BuyingPrice">
+                <label for="Offered Book Buying Price"></label>
+            </div>
+            <div class="form_design">
+                <input type="text" placeholder="Offered Book Selling Price" id="SellingPrice" name="SellingPrice">
+                <label for="Offered Book Selling Price"></label>
+            </div>
+
+
+            <div class="form_design">
+                <label for="type" style="font-size: 15px; transform: translateY(-30px);">Condition:</label>
+                <select id="type" name="condition">
+                    <option value="Very Good">Very Good(Almost New)</option>
+                    <option value="Good">Good</option>
+                    <option value="Torn out">Torn out</option>
+                </select>
+            </div>
+
+
+            <div class="form_design">
+                <input type="hidden" id="SHOP_ID" name="SHOP_ID" value="<%= shop_id%>">
+                <input type="hidden" id="USER_ID" name="USER_ID" value="<%= user_id%>">
+            </div>
+            <button>submit</button>
+
+        </form>
+
+    </main>
+
+</body> -->
+
+</html>
+
+
+ <style>
+    
+   </style>
+ 
+<div class="container">
+    <div class="card">
+        <a class="singup">Create Exchange Offer</a>
+        <form action="/exchangeInfo/<%= user_id %>/<%= shop_id %>" , method="POST">
+            <div class="inputBox1">
+            
+            <span class="user">Offered Book Name</span>
+       
+            <select id="type" name="OfferedBookName">
+                <% for(let i=0;i<boughtbooks.length;i++){ %>
+                <option value="<%= boughtbooks[i].NAME %>"><%= boughtbooks[i].NAME %></option>
+                <% } %>
+            </select>
+        </div>
+
+        <div class="inputBox">
+           
+            <span>Exchanged Book Name</span>
+            <select id="t" name="ExchangedBookName">
+                <% for(let i=0;i<shopbooks.length;i++){ %>
+                <option value="<%= shopbooks[i].NAME %>"><%= shopbooks[i].NAME %></option>
+                <% } %>
+            </select>
+
+        </div>
+
+
+        <div class="inputBox">
+            <!-- <span>Offered Book Buying Price</span> -->
+            <input type="text" placeholder="Offered Book Buying Price" id="BuyingPrice" name="BuyingPrice">
+            
+        </div>
+        <div class="inputBox">
+            <!-- <span>Offered Book Selling Price</span> -->
+            <input type="text" placeholder="Offered Book Selling Price" id="SellingPrice" name="SellingPrice">
+            
+        </div>
+
+        <div class="inputBox">
+            
+            <span>Condition</span>
+            <select id="type" name="condition">
+                <option value="Very Good">Very Good(Almost New)</option>
+                <option value="Good">Good</option>
+                <option value="Torn out">Torn out</option>
+            </select>
+        </div>
+        <input type="hidden" id="SHOP_ID" name="SHOP_ID" value="<%= shop_id%>">
+        <input type="hidden" id="USER_ID" name="USER_ID" value="<%= user_id%>">
+            
+        <button class="enter">Make Offer</button>
+    </form>
+
+    </div>
+</div>
